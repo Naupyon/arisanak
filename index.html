@@ -1,363 +1,800 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arisanak - Smart Money & Arisan Tracker</title>
+<!doctype html>
+<html lang="id-id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arisanak - Manajemen Keuangan & Arisan Pintar</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Material Symbols Rounded -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            500: '#10b981',
-                            600: '#059669',
-                            700: '#047857',
-                            900: '#064e3b',
-                        },
-                        secondary: {
-                            50: '#f5f3ff',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                        }
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', "sans-serif"],
+            },
+            colors: {
+              // Palet Warna Material Design 3 yang dihasilkan dari Seed Color: #FF003F
+              md: {
+                primary: "#BF0030", // M3 Primary
+                "on-primary": "#FFFFFF", // M3 On Primary
+                "primary-container": "#FFDAD9", // M3 Primary Container
+                "on-primary-container": "#410006", // M3 On Primary Container
+                secondary: "#775656", // M3 Secondary
+                "on-secondary": "#FFFFFF", // M3 On Secondary
+                "secondary-container": "#FFDADA", // M3 Secondary Container
+                "on-secondary-container": "#2C1516",
+                tertiary: "#755A2F", // M3 Tertiary
+                "on-tertiary": "#FFFFFF",
+                "tertiary-container": "#FFDDB1",
+                "on-tertiary-container": "#291800",
+                error: "#BA1A1A",
+                background: "#FFF8F7", // M3 Background (Warm tint)
+                surface: "#FFF8F7", // M3 Surface
+                "surface-variant": "#F5DDDB", // M3 Surface Variant
+                "on-surface": "#221919", // M3 On Surface
+                "on-surface-variant": "#534342", // M3 On Surface Variant
+                "surface-container-low": "#FDF1F0",
+                "surface-container": "#F8ECEB", // Card & Navigation Background
+                "surface-container-high": "#F2E6E5",
+                outline: "#857372", // M3 Outline
+                "outline-variant": "#D8C2C0",
+              },
+            },
+            borderRadius: {
+              "md3-xs": "4px",
+              "md3-sm": "8px",
+              "md3-md": "12px",
+              "md3-lg": "16px",
+              "md3-xl": "24px",
+              "md3-2xl": "28px", // Standar sudut tumpul M3 untuk Kartu & Dialog
+              "md3-full": "9999px",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased">
-
-    <!-- Header / Navigation -->
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center space-x-2">
-                <div class="w-9 h-9 bg-gradient-to-tr from-primary-600 to-secondary-500 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md shadow-primary-500/20">
-                    A
-                </div>
-                <span class="text-xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary-700 to-secondary-600">Arisanak</span>
-            </div>
-
-            <!-- Nav Links -->
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
-                <a href="#features" class="hover:text-primary-600 transition">Features</a>
-                <a href="#how-it-works" class="hover:text-primary-600 transition">How It Works</a>
-                <a href="#about" class="hover:text-primary-600 transition">About</a>
-            </nav>
-
-            <!-- CTA -->
-            <div>
-                <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-primary-600 hover:bg-primary-700 transition rounded-xl shadow-lg shadow-primary-600/15">
-                    Download App
-                </a>
-            </div>
+    <style>
+      .material-symbols-rounded {
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="bg-md-background text-md-on-surface font-sans antialiased">
+    <!-- Header / Navigasi (M3 Top App Bar Style) -->
+    <header
+      class="sticky top-0 z-50 bg-md-surface-container/90 backdrop-blur-md border-b border-md-outline-variant/30"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
+      >
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <div
+            class="w-10 h-10 bg-md-primary rounded-md3-xl flex items-center justify-center text-md-on-primary font-bold text-lg shadow-sm"
+          >
+            A
+          </div>
+          <span class="text-xl font-extrabold tracking-tight text-md-primary"
+            >Arisanak</span
+          >
         </div>
+
+        <!-- Link Navigasi -->
+        <nav
+          class="hidden md:flex space-x-8 text-sm font-semibold text-md-on-surface-variant"
+        >
+          <a
+            href="#features"
+            class="hover:text-md-primary transition px-3 py-1.5 rounded-md3-full hover:bg-md-primary/5"
+            >Fitur</a
+          >
+          <a
+            href="#how-it-works"
+            class="hover:text-md-primary transition px-3 py-1.5 rounded-md3-full hover:bg-md-primary/5"
+            >Cara Kerja</a
+          >
+          <a
+            href="#about"
+            class="hover:text-md-primary transition px-3 py-1.5 rounded-md3-full hover:bg-md-primary/5"
+            >Tentang</a
+          >
+        </nav>
+
+        <!-- CTA (M3 Filled Button) -->
+        <div>
+          <a
+            href="https://google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-md-on-primary bg-md-primary hover:bg-md-primary/90 transition-all rounded-md3-full shadow-sm hover:shadow-md"
+          >
+            Unduh Aplikasi
+          </a>
+        </div>
+      </div>
     </header>
 
     <!-- Hero Section -->
     <section class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-                
-                <!-- Left Column (Content) -->
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center space-x-2 bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase">
-                        <span>New Release v2.0</span>
-                    </div>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-950 tracking-tight leading-tight">
-                        Track finances & manage <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-500">Arisan</span> groups with ease.
-                    </h1>
-                    <p class="text-lg text-slate-600 max-w-xl mx-auto lg:mx-0">
-                        Arisanak simplifies budget tracking, personal expense management, and social savings (Arisan) pools. Keep your finances organized and your social circles in sync—all in one place.
-                    </p>
-                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                        <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-slate-900 hover:bg-slate-800 transition rounded-2xl shadow-xl shadow-slate-950/10">
-                            Download for Android & iOS
-                        </a>
-                        <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 transition rounded-2xl">
-                            Explore Features
-                        </a>
-                    </div>
-                </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          <!-- Kolom Kiri (Konten) -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <h1
+              class="text-4xl sm:text-5xl lg:text-6xl font-black text-md-on-surface tracking-tight leading-tight"
+            >
+              Kelola Keuangan & Grup
+              <span class="text-md-primary">Arisan</span> Lebih Praktis
+            </h1>
+            <p
+              class="text-lg text-md-on-surface-variant max-w-xl mx-auto lg:mx-0"
+            >
+              Arisanak menyederhanakan pelacakan anggaran, manajemen pengeluaran
+              pribadi, dan kelompok tabungan sosial (Arisan). Jaga keuangan Anda
+              tetap teratur dan lingkaran sosial Anda tetap sinkron—semua dalam
+              satu aplikasi.
+            </p>
 
-                <!-- Right Column (Smartphone UI Mockup Placeholder) -->
-                <div class="lg:col-span-5 flex justify-center">
-                    <!-- Interactive CSS Phone Frame -->
-                    <div class="relative mx-auto border-slate-900 bg-slate-900 border-[12px] rounded-[2.5rem] h-[580px] w-[280px] shadow-2xl ring-1 ring-slate-900/10">
-                        <div class="w-[120px] h-[16px] bg-slate-900 top-0 left-1/2 -translate-x-1/2 rounded-b-[1rem] absolute z-20"></div>
-                        <div class="rounded-[2rem] overflow-hidden w-full h-full bg-slate-950 flex flex-col justify-between p-4 text-white relative">
-                            
-                            <!-- Mockup Content Header -->
-                            <div class="pt-4 space-y-3">
-                                <div class="flex justify-between items-center text-xs text-slate-400">
-                                    <span>9:41</span>
-                                    <div class="flex space-x-1 items-center">
-                                        <div class="w-3 h-2 bg-white rounded-xs"></div>
-                                        <div class="w-4 h-3 bg-white rounded-xs"></div>
-                                    </div>
-                                </div>
-                                
-                                <!-- App Header -->
-                                <div class="flex justify-between items-center">
-                                    <div>
-                                        <p class="text-xs text-slate-400">Good Morning,</p>
-                                        <p class="text-sm font-bold">Amanda Rizka</p>
-                                    </div>
-                                    <div class="w-8 h-8 rounded-full bg-secondary-500 flex items-center justify-center text-xs font-bold text-white">
-                                        AR
-                                    </div>
-                                </div>
+            <div class="pt-4 space-y-4">
+              <div
+                class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+              >
+                <!-- M3 Filled Button -->
+                <a
+                  href="https://google.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold text-md-on-primary bg-md-primary hover:bg-md-primary/90 transition rounded-md3-full shadow-md hover:shadow-lg"
+                >
+                  <span class="material-symbols-rounded">download</span>
+                  Unduh untuk Android
+                </a>
+                <!-- M3 Tonal Button (Link Manual Book ke YouTube) -->
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold text-md-on-primary-container bg-md-primary-container hover:bg-md-primary-container/85 transition rounded-md3-full shadow-sm hover:shadow-md"
+                >
+                  <span class="material-symbols-rounded">menu_book</span>
+                  Buku Manual Digital
+                </a>
+                <!-- M3 Outlined Button -->
+                <a
+                  href="#features"
+                  class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-md-primary bg-transparent border border-md-outline hover:bg-md-primary/5 transition rounded-md3-full"
+                >
+                  Jelajahi Fitur
+                </a>
+              </div>
 
-                                <!-- Dashboard Balance Card Placeholder -->
-                                <div class="bg-gradient-to-tr from-primary-600 to-primary-700 rounded-2xl p-4 space-y-3 shadow-lg shadow-primary-950/40">
-                                    <div>
-                                        <p class="text-[10px] text-primary-100 uppercase font-semibold">Total Balance</p>
-                                        <p class="text-xl font-extrabold">Rp 4.850.000</p>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-2 text-[10px] border-t border-white/10 pt-2">
-                                        <div>
-                                            <p class="text-primary-200">Income</p>
-                                            <p class="font-bold text-white">Rp 6.200.000</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-primary-200">Expenses</p>
-                                            <p class="font-bold text-white">Rp 1.350.000</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Mockup Content Body (Recent Activities / Arisan) -->
-                            <div class="flex-1 my-4 space-y-3 overflow-hidden">
-                                <p class="text-[11px] font-bold text-slate-300">Active Arisan Pools</p>
-                                
-                                <!-- Arisan Card 1 -->
-                                <div class="bg-slate-900 border border-slate-800 rounded-xl p-2.5 flex justify-between items-center">
-                                    <div class="flex items-center space-x-2">
-                                        <div class="w-7 h-7 bg-purple-500/20 rounded-lg flex items-center justify-center text-purple-400 text-xs font-bold">
-                                            👥
-                                        </div>
-                                        <div>
-                                            <p class="text-xs font-semibold">Arisan Family</p>
-                                            <p class="text-[9px] text-slate-400">Next draw: 25 June</p>
-                                        </div>
-                                    </div>
-                                    <div class="text-right">
-                                        <p class="text-xs font-bold text-primary-500">Paid</p>
-                                        <p class="text-[8px] text-slate-400">Rp 500k/mo</p>
-                                    </div>
-                                </div>
-
-                                <!-- Arisan Card 2 -->
-                                <div class="bg-slate-900 border border-slate-800 rounded-xl p-2.5 flex justify-between items-center opacity-85">
-                                    <div class="flex items-center space-x-2">
-                                        <div class="w-7 h-7 bg-amber-500/20 rounded-lg flex items-center justify-center text-amber-400 text-xs font-bold">
-                                            👜
-                                        </div>
-                                        <div>
-                                            <p class="text-xs font-semibold">Office Circle</p>
-                                            <p class="text-[9px] text-slate-400">Next draw: Today</p>
-                                        </div>
-                                    </div>
-                                    <div class="text-right">
-                                        <p class="text-xs font-bold text-rose-500">Unpaid</p>
-                                        <p class="text-[8px] text-slate-400">Rp 200k/mo</p>
-                                    </div>
-                                </div>
-                                
-                                <!-- Budget Target visualizer -->
-                                <p class="text-[11px] font-bold text-slate-300">Budget Limit</p>
-                                <div class="bg-slate-900 border border-slate-800 rounded-xl p-2.5 space-y-1">
-                                    <div class="flex justify-between text-[9px]">
-                                        <span>Food & Drinks</span>
-                                        <span class="text-slate-400">75% used</span>
-                                    </div>
-                                    <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                                        <div class="bg-primary-500 h-full w-[75%] rounded-full"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Mockup Bottom Navbar -->
-                            <div class="border-t border-slate-800 pt-2 flex justify-around text-[10px] text-slate-400">
-                                <span class="text-primary-500 font-semibold">Home</span>
-                                <span>Arisan</span>
-                                <span>Analytics</span>
-                                <span>Profile</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+              <!-- Pengingat Izin Sumber Aplikasi -->
+              <!-- <p class="text-xs text-md-on-surface-variant/90 max-w-lg mx-auto lg:mx-0 flex items-start gap-2 justify-center lg:justify-start bg-md-surface-container-high/40 p-3 rounded-md3-lg border border-md-outline-variant/30">
+                            <span class="material-symbols-rounded text-md-primary text-base flex-shrink-0 mt-0.5">info</span>
+                            <span><strong>Penting:</strong> Untuk melanjutkan instalasi berkas APK ini, pastikan Anda telah memberikan izin <em>"Izinkan instalasi dari sumber tidak dikenal"</em> pada peramban web atau pengelola file yang Anda gunakan saat ini di pengaturan keamanan Android Anda.</span>
+                        </p> -->
             </div>
+          </div>
+
+          <!-- Kolom Kanan (Mockup Smartphone MD3) -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div
+              class="relative mx-auto border-md-on-surface bg-md-on-surface border-[12px] rounded-[3rem] h-[580px] w-[280px] shadow-xl"
+            >
+              <!-- Dynamic Island / Kamera -->
+              <div
+                class="w-[120px] h-[16px] bg-md-on-surface top-0 left-1/2 -translate-x-1/2 rounded-b-[1rem] absolute z-20"
+              ></div>
+              <div
+                class="rounded-[2.4rem] overflow-hidden w-full h-full bg-md-surface flex flex-col justify-between p-4 text-md-on-surface relative"
+              >
+                <!-- Header Mockup -->
+                <div class="pt-4 space-y-3">
+                  <div
+                    class="flex justify-between items-center text-xs text-md-on-surface-variant font-medium"
+                  >
+                    <span>09:41</span>
+                    <div class="flex space-x-1 items-center">
+                      <span class="material-symbols-rounded text-sm"
+                        >signal_cellular_4_bar</span
+                      >
+                      <span class="material-symbols-rounded text-sm"
+                        >battery_5_bar</span
+                      >
+                    </div>
+                  </div>
+
+                  <!-- Header Aplikasi -->
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <p class="text-[10px] text-md-on-surface-variant">
+                        Selamat Pagi,
+                      </p>
+                      <p class="text-sm font-bold">Amanda Rizka</p>
+                    </div>
+                    <div
+                      class="w-8 h-8 rounded-md3-full bg-md-secondary-container flex items-center justify-center text-xs font-bold text-md-on-secondary-container"
+                    >
+                      AR
+                    </div>
+                  </div>
+
+                  <!-- Kartu Saldo Utama (M3 Primary Card) -->
+                  <div
+                    class="bg-md-primary-container text-md-on-primary-container rounded-md3-2xl p-4 space-y-3 shadow-sm"
+                  >
+                    <div>
+                      <p
+                        class="text-[10px] uppercase font-bold tracking-wider opacity-80"
+                      >
+                        Total Saldo
+                      </p>
+                      <p class="text-xl font-extrabold">Rp 4.850.000</p>
+                    </div>
+                    <div
+                      class="grid grid-cols-2 gap-2 text-[10px] border-t border-md-on-primary-container/15 pt-2"
+                    >
+                      <div>
+                        <p class="opacity-80">Pemasukan</p>
+                        <p class="font-extrabold">Rp 6.200.000</p>
+                      </div>
+                      <div>
+                        <p class="opacity-80">Pengeluaran</p>
+                        <p class="font-extrabold">Rp 1.350.000</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Body Mockup (Aktivitas / Arisan) -->
+                <div class="flex-1 my-4 space-y-3 overflow-hidden">
+                  <p class="text-[11px] font-bold text-md-on-surface">
+                    Grup Arisan Aktif
+                  </p>
+
+                  <!-- Kartu Arisan 1 (M3 Elevated Card) -->
+                  <div
+                    class="bg-md-surface-container-low border border-md-outline-variant/30 rounded-md3-xl p-2.5 flex justify-between items-center shadow-xs"
+                  >
+                    <div class="flex items-center space-x-2">
+                      <div
+                        class="w-7 h-7 bg-md-primary-container rounded-md3-md flex items-center justify-center text-md-on-primary-container"
+                      >
+                        <span class="material-symbols-rounded text-sm"
+                          >group</span
+                        >
+                      </div>
+                      <div>
+                        <p class="text-xs font-bold">Arisan Keluarga</p>
+                        <p class="text-[9px] text-md-on-surface-variant">
+                          Kocokan: 25 Juni
+                        </p>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <p
+                        class="text-[10px] font-bold text-md-primary bg-md-primary-container/40 px-2 py-0.5 rounded-md3-full"
+                      >
+                        Lunas
+                      </p>
+                      <p class="text-[8px] text-md-on-surface-variant mt-0.5">
+                        Rp 500rb/bln
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Kartu Arisan 2 -->
+                  <div
+                    class="bg-md-surface-container-low border border-md-outline-variant/30 rounded-md3-xl p-2.5 flex justify-between items-center"
+                  >
+                    <div class="flex items-center space-x-2">
+                      <div
+                        class="w-7 h-7 bg-md-secondary-container rounded-md3-md flex items-center justify-center text-md-on-secondary-container"
+                      >
+                        <span class="material-symbols-rounded text-sm"
+                          >work</span
+                        >
+                      </div>
+                      <div>
+                        <p class="text-xs font-bold">Arisan Kantor</p>
+                        <p class="text-[9px] text-md-on-surface-variant">
+                          Kocokan: Hari Ini
+                        </p>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <p
+                        class="text-[10px] font-bold text-md-error bg-md-error/10 px-2 py-0.5 rounded-md3-full"
+                      >
+                        Belum Bayar
+                      </p>
+                      <p class="text-[8px] text-md-on-surface-variant mt-0.5">
+                        Rp 200rb/bln
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Batas Anggaran (M3 Progress Bar) -->
+                  <p class="text-[11px] font-bold text-md-on-surface">
+                    Batas Anggaran
+                  </p>
+                  <div
+                    class="bg-md-surface-container-low border border-md-outline-variant/30 rounded-md3-xl p-2.5 space-y-1"
+                  >
+                    <div
+                      class="flex justify-between text-[9px] text-md-on-surface-variant"
+                    >
+                      <span class="font-medium text-md-on-surface"
+                        >Makanan & Minuman</span
+                      >
+                      <span>75% terpakai</span>
+                    </div>
+                    <div
+                      class="w-full bg-md-surface-container-high h-2 rounded-md3-full overflow-hidden"
+                    >
+                      <div
+                        class="bg-md-primary h-full w-[75%] rounded-md3-full"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bottom Navigation Mockup (M3 Style) -->
+                <div
+                  class="border-t border-md-outline-variant/35 pt-2 flex justify-around text-[10px] text-md-on-surface-variant font-medium"
+                >
+                  <div class="flex flex-col items-center text-md-primary">
+                    <span class="material-symbols-rounded text-lg">home</span>
+                    <span>Beranda</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <span class="material-symbols-rounded text-lg">groups</span>
+                    <span>Arisan</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <span class="material-symbols-rounded text-lg"
+                      >equalizer</span
+                    >
+                    <span>Analisis</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <span class="material-symbols-rounded text-lg">person</span>
+                    <span>Profil</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- App Features Section -->
-    <section id="features" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto space-y-4">
-                <h2 class="text-3xl font-extrabold text-slate-950 sm:text-4xl">
-                    Everything you need to track personal and group savings
-                </h2>
-                <p class="text-lg text-slate-600">
-                    Arisanak removes the friction of manual financial accounting and organizing traditional arisan events.
-                </p>
-            </div>
-
-            <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <!-- Feature 1 -->
-                <div class="bg-slate-50 rounded-2xl p-8 space-y-4 border border-slate-100">
-                    <!-- Colored Placeholder Div for Icon -->
-                    <div class="w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center font-bold text-xl">
-                        📈
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900">Personal Expense Tracker</h3>
-                    <p class="text-slate-600">
-                        Categorize your income and expenses instantly. Gain access to graphical reports on your spending habits to find saving opportunities.
-                    </p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="bg-slate-50 rounded-2xl p-8 space-y-4 border border-slate-100">
-                    <!-- Colored Placeholder Div for Icon -->
-                    <div class="w-12 h-12 rounded-xl bg-secondary-50 text-secondary-600 flex items-center justify-center font-bold text-xl">
-                        👥
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900">Arisan Rotation Manager</h3>
-                    <p class="text-slate-600">
-                        Manage roster details, rotation cycles, tracking of due payments, and automatic random drawer processes directly inside the application.
-                    </p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="bg-slate-50 rounded-2xl p-8 space-y-4 border border-slate-100">
-                    <!-- Colored Placeholder Div for Icon -->
-                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xl">
-                        🔔
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900">Automatic Reminders</h3>
-                    <p class="text-slate-600">
-                        Send notifications to group participants automatically when payments are due, ensuring timely payments without awkward face-to-face followups.
-                    </p>
-                </div>
-            </div>
+    <section id="features" class="py-20 bg-md-surface-container-low/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto space-y-4">
+          <h2
+            class="text-3xl font-extrabold text-md-on-surface sm:text-4xl tracking-tight"
+          >
+            Semua yang Anda butuhkan untuk melacak tabungan pribadi & kelompok
+          </h2>
+          <p class="text-lg text-md-on-surface-variant">
+            Arisanak menghilangkan kerumitan pencatatan finansial manual dan
+            pengelolaan acara arisan tradisional.
+          </p>
         </div>
+
+        <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Fitur 1 (M3 Elevated Card) -->
+          <div
+            class="bg-md-surface-container-high hover:shadow-md transition-shadow duration-300 rounded-md3-2xl p-8 space-y-4 border border-md-outline-variant/20"
+          >
+            <div
+              class="w-12 h-12 rounded-md3-xl bg-md-primary-container text-md-primary flex items-center justify-center shadow-sm"
+            >
+              <span class="material-symbols-rounded text-2xl">trending_up</span>
+            </div>
+            <h3 class="text-xl font-bold text-md-on-surface">
+              Pencatat Pengeluaran Pribadi
+            </h3>
+            <p class="text-md-on-surface-variant">
+              Kategorikan pemasukan dan pengeluaran Anda secara instan. Dapatkan
+              visualisasi laporan keuangan interaktif untuk membantu Anda
+              menabung lebih efektif.
+            </p>
+          </div>
+
+          <!-- Fitur 2 -->
+          <div
+            class="bg-md-surface-container-high hover:shadow-md transition-shadow duration-300 rounded-md3-2xl p-8 space-y-4 border border-md-outline-variant/20"
+          >
+            <div
+              class="w-12 h-12 rounded-md3-xl bg-md-secondary-container text-md-secondary flex items-center justify-center shadow-sm"
+            >
+              <span class="material-symbols-rounded text-2xl">group</span>
+            </div>
+            <h3 class="text-xl font-bold text-md-on-surface">
+              Pengelola Putaran Arisan
+            </h3>
+            <p class="text-md-on-surface-variant">
+              Atur daftar anggota, kelola siklus putaran arisan, lacak status
+              setoran, dan lakukan pengundian pemenang secara adil dan otomatis
+              langsung di aplikasi.
+            </p>
+          </div>
+
+          <!-- Fitur 3 -->
+          <div
+            class="bg-md-surface-container-high hover:shadow-md transition-shadow duration-300 rounded-md3-2xl p-8 space-y-4 border border-md-outline-variant/20"
+          >
+            <div
+              class="w-12 h-12 rounded-md3-xl bg-md-tertiary-container text-md-tertiary flex items-center justify-center shadow-sm"
+            >
+              <span class="material-symbols-rounded text-2xl"
+                >notifications_active</span
+              >
+            </div>
+            <h3 class="text-xl font-bold text-md-on-surface">
+              Pengingat Tagihan Otomatis
+            </h3>
+            <p class="text-md-on-surface-variant">
+              Kirim pengingat otomatis kepada anggota saat jatuh tempo
+              pembayaran arisan. Tidak perlu lagi merasa sungkan saat menagih
+              setoran secara langsung.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Secondary Callout Feature with visual representation -->
-    <section id="how-it-works" class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                
-                <!-- Left Column (Visual Placeholders) -->
-                <div class="space-y-4">
-                    <!-- Stack of colored placeholder divs resembling dashboard modules -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm font-bold text-slate-950">Arisan Group Setup</span>
-                            <span class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-medium">Active</span>
-                        </div>
-                        <div class="space-y-2">
-                            <div class="h-2 bg-slate-100 rounded-full w-3/4"></div>
-                            <div class="h-2 bg-slate-100 rounded-full w-1/2"></div>
-                        </div>
-                        <!-- Simulated Avatars with colored divs -->
-                        <div class="flex space-x-2 pt-2">
-                            <div class="w-8 h-8 rounded-full bg-teal-400 flex items-center justify-center text-xs font-semibold text-white">B</div>
-                            <div class="w-8 h-8 rounded-full bg-violet-400 flex items-center justify-center text-xs font-semibold text-white">S</div>
-                            <div class="w-8 h-8 rounded-full bg-pink-400 flex items-center justify-center text-xs font-semibold text-white">T</div>
-                            <div class="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center text-xs font-semibold text-white">J</div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-3">
-                        <span class="text-sm font-bold text-slate-950">Analytics Breakdown</span>
-                        <!-- Simulating a bar graph with colored flex containers -->
-                        <div class="flex items-end justify-between h-24 pt-4">
-                            <div class="w-8 bg-slate-200 h-[40%] rounded-t-lg"></div>
-                            <div class="w-8 bg-primary-500 h-[80%] rounded-t-lg"></div>
-                            <div class="w-8 bg-slate-200 h-[55%] rounded-t-lg"></div>
-                            <div class="w-8 bg-secondary-500 h-[95%] rounded-t-lg"></div>
-                            <div class="w-8 bg-slate-200 h-[30%] rounded-t-lg"></div>
-                        </div>
-                    </div>
+    <!-- Secondary Callout Feature Section -->
+    <section id="how-it-works" class="py-20 bg-md-background">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <!-- Kolom Kiri (Visual Placeholders M3 Card) -->
+          <div class="space-y-4">
+            <!-- Setup Grup Arisan -->
+            <div
+              class="bg-md-surface-container-high p-6 rounded-md3-2xl border border-md-outline-variant/30 space-y-4 shadow-sm"
+            >
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-bold text-md-on-surface"
+                  >Pengaturan Grup Arisan</span
+                >
+                <span
+                  class="text-xs bg-md-primary-container text-md-on-primary-container px-3 py-1 rounded-md3-full font-bold"
+                  >Aktif</span
+                >
+              </div>
+              <div class="space-y-2">
+                <div
+                  class="h-2 bg-md-on-surface-variant/10 rounded-md3-full w-3/4"
+                ></div>
+                <div
+                  class="h-2 bg-md-on-surface-variant/10 rounded-md3-full w-1/2"
+                ></div>
+              </div>
+              <!-- Simulated Avatars with MD3 Tonal scheme -->
+              <div class="flex space-x-2 pt-2">
+                <div
+                  class="w-8 h-8 rounded-md3-full bg-md-primary text-md-on-primary flex items-center justify-center text-xs font-bold"
+                >
+                  B
                 </div>
-
-                <!-- Right Column (Content) -->
-                <div class="space-y-6">
-                    <h2 class="text-3xl font-extrabold text-slate-950">
-                        Designed with simplicity and social finance in mind
-                    </h2>
-                    <p class="text-slate-600 text-lg">
-                        Tracking your budget doesn't have to be a lonely endeavor. Arisanak blends personal budgeting routines with standard informal community finance frameworks natively.
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start space-x-3">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 text-sm">✓</div>
-                            <p class="text-slate-700 font-medium">Real-time balances calculated after every transaction.</p>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 text-sm">✓</div>
-                            <p class="text-slate-700 font-medium">Transparent activity logs visible to all group participants.</p>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 text-sm">✓</div>
-                            <p class="text-slate-700 font-medium">Secure encryption configurations protecting your privacy.</p>
-                        </li>
-                    </ul>
+                <div
+                  class="w-8 h-8 rounded-md3-full bg-md-secondary text-md-on-secondary flex items-center justify-center text-xs font-bold"
+                >
+                  S
                 </div>
-
+                <div
+                  class="w-8 h-8 rounded-md3-full bg-md-tertiary text-md-on-tertiary flex items-center justify-center text-xs font-bold"
+                >
+                  T
+                </div>
+                <div
+                  class="w-8 h-8 rounded-md3-full bg-md-primary-container text-md-on-primary-container flex items-center justify-center text-xs font-bold"
+                >
+                  +5
+                </div>
+              </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Bottom CTA / App Download Section -->
-    <section id="about" class="py-16 bg-slate-950 text-white relative overflow-hidden">
-        <!-- Colored light pattern effects (CSS gradients) -->
-        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-600/10 rounded-full filter blur-3xl"></div>
-        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary-600/10 rounded-full filter blur-3xl"></div>
+            <!-- Analisis Grafik -->
+            <div
+              class="bg-md-surface-container-high p-6 rounded-md3-2xl border border-md-outline-variant/30 space-y-3 shadow-sm"
+            >
+              <span class="text-sm font-bold text-md-on-surface"
+                >Analisis Pengeluaran</span
+              >
+              <!-- Simulating a bar graph with colored flex containers matching M3 Palette -->
+              <div class="flex items-end justify-between h-24 pt-4 px-2">
+                <div
+                  class="w-8 bg-md-secondary-container h-[40%] rounded-t-md3-sm"
+                ></div>
+                <div class="w-8 bg-md-primary h-[80%] rounded-t-md3-sm"></div>
+                <div
+                  class="w-8 bg-md-secondary-container h-[55%] rounded-t-md3-sm"
+                ></div>
+                <div class="w-8 bg-md-tertiary h-[95%] rounded-t-md3-sm"></div>
+                <div
+                  class="w-8 bg-md-secondary-container h-[30%] rounded-t-md3-sm"
+                ></div>
+              </div>
+            </div>
+          </div>
 
-        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
-            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
-                Take control of your social and personal finance.
+          <!-- Kolom Kanan (Konten Pendukung) -->
+          <div class="space-y-6">
+            <h2
+              class="text-3xl font-extrabold text-md-on-surface tracking-tight"
+            >
+              Dirancang untuk kemudahan finansial sosial komunitas Anda
             </h2>
-            <p class="text-lg text-slate-300 max-w-xl mx-auto">
-                Join thousands of users utilizing Arisanak to optimize budgeting tracking and run group savings without coordination issues.
+            <p class="text-md-on-surface-variant text-lg">
+              Melacak anggaran tidak harus menjadi hal yang membosankan dan
+              menyendiri. Arisanak memadukan rutinitas anggaran pribadi dengan
+              sistem keuangan sosial komunitas secara terintegrasi.
             </p>
-            <div class="pt-6">
-                <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-slate-950 bg-white hover:bg-slate-100 transition rounded-2xl shadow-xl">
-                    Get Arisanak Today
-                </a>
-            </div>
+            <ul class="space-y-4">
+              <li class="flex items-start space-x-3">
+                <div
+                  class="flex-shrink-0 w-6 h-6 rounded-md3-full bg-md-primary-container flex items-center justify-center text-md-primary"
+                >
+                  <span class="material-symbols-rounded text-sm font-bold"
+                    >check</span
+                  >
+                </div>
+                <p class="text-md-on-surface-variant font-medium">
+                  Pembaruan saldo seketika (real-time) setelah transaksi
+                  divalidasi.
+                </p>
+              </li>
+              <li class="flex items-start space-x-3">
+                <div
+                  class="flex-shrink-0 w-6 h-6 rounded-md3-full bg-md-primary-container flex items-center justify-center text-md-primary"
+                >
+                  <span class="material-symbols-rounded text-sm font-bold"
+                    >check</span
+                  >
+                </div>
+                <p class="text-md-on-surface-variant font-medium">
+                  Riwayat aktivitas yang transparan bagi seluruh anggota arisan.
+                </p>
+              </li>
+              <li class="flex items-start space-x-3">
+                <div
+                  class="flex-shrink-0 w-6 h-6 rounded-md3-full bg-md-primary-container flex items-center justify-center text-md-primary"
+                >
+                  <span class="material-symbols-rounded text-sm font-bold"
+                    >check</span
+                  >
+                </div>
+                <p class="text-md-on-surface-variant font-medium">
+                  Sistem enkripsi modern untuk menjaga keamanan data privasi
+                  Anda.
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-100 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div class="flex items-center space-x-2">
-                <div class="w-7 h-7 bg-primary-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
-                    A
-                </div>
-                <span class="font-extrabold tracking-tight text-slate-900">Arisanak</span>
-            </div>
-            <p class="text-sm text-slate-500">
-                &copy; 2026 Arisanak. All rights reserved.
-            </p>
-            <div class="flex space-x-6 text-sm text-slate-500">
-                <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="hover:text-primary-600 transition">Google</a>
-                <span class="text-slate-300">|</span>
-                <a href="#features" class="hover:text-primary-600 transition">Features</a>
-            </div>
-        </div>
-    </footer>
+    <!-- Bottom CTA / App Download Section (M3 Accent Style) -->
+    <section
+      id="about"
+      class="py-20 bg-md-primary-container text-md-on-primary-container relative overflow-hidden"
+    >
+      <!-- Radial dynamic M3 backgrounds -->
+      <div
+        class="absolute top-0 left-1/4 w-96 h-96 bg-md-primary/10 rounded-md3-full filter blur-3xl"
+      ></div>
+      <div
+        class="absolute bottom-0 right-1/4 w-96 h-96 bg-md-tertiary/10 rounded-md3-full filter blur-3xl"
+      ></div>
 
-</body>
+      <div
+        class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10 space-y-6"
+      >
+        <h2
+          class="text-3xl sm:text-4xl font-extrabold tracking-tight text-md-on-primary-container"
+        >
+          Kendalikan Keuangan Pribadi & Sosial Anda Sekarang
+        </h2>
+        <p class="text-lg text-md-on-primary-container/80 max-w-xl mx-auto">
+          Bergabunglah dengan ribuan pengguna yang mengoptimalkan perencanaan
+          keuangan mereka dan menjalankan arisan bebas pusing bersama Arisanak.
+        </p>
+
+        <div class="pt-6 space-y-4">
+          <div
+            class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full"
+          >
+            <!-- M3 Extra Large Filled Button -->
+            <a
+              href="https://google.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold text-md-on-primary bg-md-primary hover:bg-md-primary/90 transition rounded-md3-full shadow-lg"
+            >
+              <span class="material-symbols-rounded">download_for_offline</span>
+              Dapatkan Arisanak Sekarang
+            </a>
+            <!-- M3 Tonal Button (Link Manual Book ke YouTube) -->
+            <!-- M3 Tonal Button (Link Manual Book ke YouTube) -->
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold text-md-on-primary-container bg-md-primary-container hover:bg-md-primary-container/85 transition rounded-md3-full shadow-sm hover:shadow-md"
+            >
+              <span class="material-symbols-rounded">menu_book</span>
+              Buku Manual Digital
+            </a>
+          </div>
+
+          <!-- Pengingat Izin Sumber Aplikasi (Bottom) -->
+          <p
+            class="text-xs text-md-on-primary-container/90 max-w-md mx-auto flex items-start gap-2 justify-center text-left bg-md-background/30 p-3 rounded-md3-lg border border-md-primary/20"
+          >
+            <span
+              class="material-symbols-rounded text-md-primary text-base flex-shrink-0 mt-0.5"
+              >info</span
+            >
+            <span
+              >Pastikan Anda telah mengaktifkan atau mengizinkan instalasi
+              aplikasi dari sumber tak dikenal pada pengaturan sistem Android
+              Anda agar berkas dapat terpasang dengan sukses.</span
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer (M3 Multi-Column & Professional Layout) -->
+    <footer
+      class="bg-md-surface-container border-t border-md-outline-variant/30 pt-16 pb-12"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-md-outline-variant/30"
+        >
+          <!-- Kolom 1: Profil Brand / PT -->
+          <div class="md:col-span-5 space-y-4">
+            <div class="flex items-center space-x-3">
+              <div
+                class="w-8 h-8 bg-md-primary rounded-md3-lg flex items-center justify-center text-md-on-primary font-bold text-sm"
+              >
+                A
+              </div>
+              <span
+                class="text-lg font-extrabold tracking-tight text-md-on-surface"
+                >Arisanak</span
+              >
+            </div>
+            <p
+              class="text-sm text-md-on-surface-variant max-w-sm leading-relaxed"
+            >
+              Aplikasi manajemen keuangan pribadi pintar dan manajemen
+              pengelolaan arisan sosial modern dalam genggaman Anda.
+            </p>
+            <p
+              class="text-xs font-bold text-md-primary tracking-wider uppercase"
+            >
+              Sistem oleh PT Dua Naufal Sekelompok
+            </p>
+          </div>
+
+          <!-- Kolom 2: Kontak & Kantor Resmi (Best Practice) -->
+          <div class="md:col-span-4 space-y-3">
+            <h4
+              class="text-sm font-extrabold text-md-on-surface tracking-wide uppercase"
+            >
+              Hubungi Kami
+            </h4>
+            <ul class="space-y-3 text-sm text-md-on-surface-variant">
+              <!-- Alamat -->
+              <li class="flex items-start space-x-2.5">
+                <span
+                  class="material-symbols-rounded text-md-primary text-lg mt-0.5"
+                  >location_on</span
+                >
+                <span class="leading-relaxed">
+                  Ruang Baca Fakultas Teknik Universitas Lambung Mangkurat,
+                  Jalan Unlam, Kelurahan Pangeran, Kecamatan Banjarmasin Utara,
+                  Kota Banjarmasin, Provinsi Kalimantan Selatan 70123
+                </span>
+              </li>
+              <!-- Telepon -->
+              <li class="flex items-center space-x-2.5">
+                <span class="material-symbols-rounded text-md-primary text-lg"
+                  >call</span
+                >
+                <a
+                  href="tel:+6282148782638"
+                  class="hover:text-md-primary transition font-semibold"
+                >
+                  +62 821-4878-2638
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Kolom 3: Navigasi Cepat -->
+          <div class="md:col-span-3 space-y-3">
+            <h4
+              class="text-sm font-extrabold text-md-on-surface tracking-wide uppercase"
+            >
+              Navigasi Cepat
+            </h4>
+            <ul
+              class="space-y-2 text-sm text-md-on-surface-variant font-medium"
+            >
+              <li>
+                <a
+                  href="#features"
+                  class="hover:text-md-primary transition flex items-center space-x-1"
+                >
+                  <span class="material-symbols-rounded text-xs"
+                    >chevron_right</span
+                  >
+                  <span>Fitur Unggulan</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#how-it-works"
+                  class="hover:text-md-primary transition flex items-center space-x-1"
+                >
+                  <span class="material-symbols-rounded text-xs"
+                    >chevron_right</span
+                  >
+                  <span>Cara Kerja</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://google.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-md-primary transition flex items-center space-x-1"
+                >
+                  <span class="material-symbols-rounded text-xs"
+                    >chevron_right</span
+                  >
+                  <span>Google Portal</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Baris Hak Cipta (M3 Bottom Line) -->
+        <div
+          class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-md-on-surface-variant"
+        >
+          <p class="text-center sm:text-left">
+            &copy; 2026 <strong>PT Dua Naufal Sekelompok</strong>. Hak Cipta
+            Dilindungi Undang-Undang.
+          </p>
+          <div class="flex space-x-4">
+            <span class="opacity-50">Arisanak</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
