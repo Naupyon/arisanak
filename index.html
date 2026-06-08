@@ -25,6 +25,7 @@
             },
             colors: {
               md: {
+                // Sesuai dengan skema warna Light Theme yang diberikan
                 primary: "rgb(144 74 75)", // #904A4B
                 "surface-tint": "rgb(144 74 75)",
                 "on-primary": "rgb(255 255 255)",
@@ -34,10 +35,10 @@
                 "on-secondary": "rgb(255 255 255)",
                 "secondary-container": "rgb(255 218 217)",
                 "on-secondary-container": "rgb(93 63 63)",
-                tertiary: "rgb(117 90 47)",
+                tertiary: "rgb(117 90 47)", // #755A2F (Gold)
                 "on-tertiary": "rgb(255 255 255)",
-                "tertiary-container": "rgb(255 222 173)",
-                "on-tertiary-container": "rgb(91 67 26)",
+                "tertiary-container": "rgb(255 222 173)", // Light Gold
+                "on-tertiary-container": "rgb(91 67 26)", // Dark Gold
                 error: "rgb(186 26 26)",
                 "on-error": "rgb(255 255 255)",
                 "error-container": "rgb(255 218 214)",
@@ -97,14 +98,6 @@
           "GRAD" 0,
           "opsz" 24;
       }
-      /* Efek animasi melayang halus untuk mockup hero */
-      @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-12px); }
-      }
-      .animate-float {
-        animation: float 6s ease-in-out infinite;
-      }
     </style>
   </head>
   <body
@@ -120,12 +113,12 @@
         <!-- Logo -->
         <a
           href="#"
-          class="flex items-center space-x-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-md-primary rounded-md3-sm transition-transform duration-200 active:scale-95"
+          class="flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-md-primary rounded-md3-sm group"
         >
           <img
             src="assets/arisanak-foreground.png"
             alt="Logo Arisanak"
-            class="h-9 w-auto object-contain"
+            class="h-9 w-auto object-contain transition-transform group-hover:scale-105"
           />
           <span class="text-xl font-extrabold tracking-tight text-md-on-surface"
             >Arisanak</span
@@ -134,32 +127,32 @@
 
         <!-- Link Navigasi (M3 Navigation Tabs Style) -->
         <nav
-          class="hidden md:flex items-center space-x-1.5 text-sm font-semibold text-md-on-surface-variant"
+          class="hidden md:flex items-center space-x-1 text-sm font-semibold text-md-on-surface-variant"
         >
           <a
             href="#features"
-            class="hover:text-md-primary hover:bg-md-primary-container/40 px-4 py-2 rounded-md3-full transition duration-200"
+            class="hover:text-md-tertiary hover:bg-md-tertiary-container/40 px-5 py-2.5 rounded-md3-full transition-all duration-200"
             >Fitur</a
           >
           <a
             href="#how-it-works"
-            class="hover:text-md-primary hover:bg-md-primary-container/40 px-4 py-2 rounded-md3-full transition duration-200"
+            class="hover:text-md-tertiary hover:bg-md-tertiary-container/40 px-5 py-2.5 rounded-md3-full transition-all duration-200"
             >Cara Kerja</a
           >
           <a
             href="#about"
-            class="hover:text-md-primary hover:bg-md-primary-container/40 px-4 py-2 rounded-md3-full transition duration-200"
+            class="hover:text-md-tertiary hover:bg-md-tertiary-container/40 px-5 py-2.5 rounded-md3-full transition-all duration-200"
             >Tentang</a
           >
         </nav>
 
         <!-- CTA (M3 Filled Button) -->
-        <div class="flex items-center">
+        <div>
           <a
             href="https://drive.google.com/drive/folders/1zz1i8U3wAz4avA3QSz99XQW4QNnvjsdx?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 text-sm font-bold tracking-wide text-md-on-primary bg-md-primary hover:bg-md-primary/95 active:scale-[0.97] transition-all duration-200 rounded-md3-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-md-primary focus-visible:ring-offset-2 hover:shadow-lg hover:shadow-md-primary/15"
+            class="inline-flex items-center justify-center px-6 py-2.5 sm:py-3 text-sm font-bold tracking-wide text-md-on-primary bg-md-primary hover:bg-md-primary/95 active:scale-95 shadow-sm hover:shadow-md transition-all duration-200 rounded-md3-full focus:outline-none focus:ring-2 focus:ring-md-primary focus:ring-offset-2"
           >
             Unduh Aplikasi
           </a>
@@ -168,62 +161,68 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative overflow-hidden pt-12 pb-20 sm:pt-16 sm:pb-24 lg:pt-24 lg:pb-32">
+    <section class="relative overflow-hidden pt-12 pb-24 lg:pt-24 lg:pb-36">
       <!-- Decorative background blur elements matching M3 tokens -->
       <div
-        class="absolute -top-40 -right-40 w-[500px] h-[500px] bg-md-primary-container/20 rounded-md3-full filter blur-[100px] pointer-events-none"
+        class="absolute -top-40 -right-40 w-96 h-96 bg-md-primary-container/20 rounded-md3-full filter blur-3xl pointer-events-none"
       ></div>
       <div
-        class="absolute top-1/2 -left-40 w-[500px] h-[500px] bg-md-tertiary-container/15 rounded-md3-full filter blur-[100px] pointer-events-none"
+        class="absolute top-1/2 -left-40 w-96 h-96 bg-md-tertiary-container/30 rounded-md3-full filter blur-3xl pointer-events-none"
       ></div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="grid lg:grid-cols-12 gap-16 lg:gap-8 items-center">
           <!-- Kolom Kiri: Headline & CTA -->
-          <div class="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
+          <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
             <h1
               class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-md-on-surface leading-[1.12]"
             >
-              Kelola <span class="text-md-primary relative inline-block">Arisan<span class="absolute bottom-1 left-0 w-full h-[6px] bg-md-primary-container/60 -z-10 rounded-full"></span></span> Lebih Praktis
+              Kelola
+              <span class="text-md-primary relative inline-block"
+                >Arisan<span
+                  class="absolute left-0 bottom-1 w-full h-1.5 bg-md-tertiary/30 rounded-full"
+                ></span
+              ></span>
+              Lebih Praktis
             </h1>
 
             <p
-              class="text-base sm:text-lg lg:text-xl text-md-on-surface-variant max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium"
+              class="text-base sm:text-lg text-md-on-surface-variant max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium"
             >
               Arisanak menyederhanakan pencatatan arisan dengan disertai sistem
-              pengundian (kocokan) dalam satu aplikasi. Jaga keuangan arisan Anda
-              tetap aman dengan pendekatan local-first.
+              pengundian (kocokan) dalam satu aplikasi. Jaga keuangan arisan
+              Anda tetap aman dengan pendekatan local-first.
             </p>
 
             <div
-              class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+              class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
             >
               <!-- M3 Filled Button with Icon -->
               <a
                 href="https://drive.google.com/drive/folders/1zz1i8U3wAz4avA3QSz99XQW4QNnvjsdx?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-bold text-md-on-primary bg-md-primary hover:bg-md-primary/95 active:scale-[0.98] transition-all duration-200 rounded-md3-full shadow-md hover:shadow-xl hover:shadow-md-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-md-primary"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold text-md-on-primary bg-md-primary hover:bg-md-primary/95 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 rounded-md3-full focus:outline-none focus:ring-2 focus:ring-md-primary"
               >
-                <span class="material-symbols-rounded text-xl">download</span>
+                <span class="material-symbols-rounded">download</span>
                 Unduh untuk Android
               </a>
 
-              <!-- M3 Tonal Button -->
+              <!-- M3 Tonal Button in Tertiary color (Gold) -->
               <a
                 href="https://drive.google.com/drive/folders/1zz1i8U3wAz4avA3QSz99XQW4QNnvjsdx?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-bold text-md-on-primary-container bg-md-primary-container hover:bg-md-primary-container/85 active:scale-[0.98] transition-all duration-200 rounded-md3-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-md-primary-container"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold text-md-on-tertiary-container bg-md-tertiary-container hover:bg-md-tertiary-container/85 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 rounded-md3-full focus:outline-none focus:ring-2 focus:ring-md-tertiary-container"
               >
-                <span class="material-symbols-rounded text-xl">menu_book</span>
+                <span class="material-symbols-rounded">menu_book</span>
                 Buku Manual Digital
               </a>
 
               <!-- M3 Outlined Button -->
               <a
                 href="#features"
-                class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-md-primary bg-transparent border border-md-outline/60 hover:bg-md-primary/5 active:scale-[0.98] transition-all duration-200 rounded-md3-full"
+                class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-md-primary bg-transparent border border-md-outline hover:bg-md-primary/5 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 rounded-md3-full"
               >
                 Jelajahi Fitur
               </a>
@@ -231,32 +230,34 @@
           </div>
 
           <!-- Kolom Kanan: Mockup Smartphone M3 -->
-          <div class="lg:col-span-5 flex justify-center">
-            <div class="relative max-w-[280px] sm:max-w-xs w-full">
-              <!-- Decorative ring behind mockup -->
-              <div class="absolute inset-0 bg-gradient-to-tr from-md-primary/10 to-md-tertiary/10 rounded-full filter blur-xl -z-10 scale-110"></div>
-              <img
-                src="assets/portrait_mockup.png"
-                alt="Mockup screenshot"
-                class="w-full h-auto object-contain drop-shadow-2xl animate-float"
-              />
-            </div>
+          <div class="lg:col-span-5 flex justify-center relative">
+            <div
+              class="absolute inset-0 bg-gradient-to-tr from-md-primary/10 to-md-tertiary/20 rounded-full filter blur-3xl opacity-70 transform scale-75 pointer-events-none"
+            ></div>
+            <img
+              src="assets/portrait_mockup.png"
+              alt="Mockup screenshot"
+              class="relative z-10 w-full max-w-[260px] sm:max-w-xs h-auto object-contain drop-shadow-2xl hover:scale-[1.03] transition-transform duration-500"
+            />
           </div>
         </div>
       </div>
     </section>
 
     <!-- App Features Section -->
-    <section id="features" class="py-20 sm:py-28 bg-md-surface-container-low/60 border-y border-md-outline-variant/10">
+    <section
+      id="features"
+      class="py-24 bg-md-surface-container-low/60 border-y border-md-outline-variant/10"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header Section -->
         <div class="text-center max-w-3xl mx-auto space-y-4">
           <span
-            class="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-md-primary bg-md-primary-container/40 px-3.5 py-1.5 rounded-full"
+            class="text-xs font-extrabold uppercase tracking-widest text-md-on-tertiary-container bg-md-tertiary-container px-4 py-1.5 rounded-md3-full"
             >Fitur Unggulan</span
           >
           <h2
-            class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-md-on-surface tracking-tight leading-tight"
+            class="text-3xl sm:text-4xl font-extrabold text-md-on-surface tracking-tight leading-tight"
           >
             Semua yang Anda butuhkan untuk mengelola arisan
           </h2>
@@ -272,185 +273,225 @@
         <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <!-- Fitur 1 (M3 Outlined Card variant) -->
           <div
-            class="bg-md-surface-container-high/40 hover:bg-md-surface-container-high hover:-translate-y-1.5 hover:shadow-lg transition duration-300 rounded-md3-2xl p-8 space-y-5 border border-md-outline-variant/30 flex flex-col justify-between"
+            class="bg-md-surface-container-high/40 hover:bg-md-surface-container-high hover:shadow-md transition-all duration-300 rounded-md3-2xl p-8 space-y-5 border border-md-outline-variant/20 hover:border-md-tertiary/30 group"
           >
-            <div class="space-y-5">
-              <div
-                class="w-12 h-12 rounded-md3-xl bg-md-primary-container text-md-primary flex items-center justify-center shadow-inner"
-              >
-                <span class="material-symbols-rounded text-2xl font-semibold">trending_up</span>
-              </div>
-              <h3 class="text-xl font-bold text-md-on-surface">
-                Catat & Kelola Arisan
-              </h3>
-              <p class="text-sm sm:text-base text-md-on-surface-variant leading-relaxed font-medium">
-                Kelola anggota, catat iuran, dan lihat laporan kas secara rapi langsung dari ponsel tanpa takut datanya tertimbun chat.
-              </p>
+            <div
+              class="w-12 h-12 rounded-md3-xl bg-md-primary-container text-md-primary flex items-center justify-center transition-transform group-hover:scale-110"
+            >
+              <span class="material-symbols-rounded text-2xl">payments</span>
             </div>
+            <h3 class="text-xl font-bold text-md-on-surface">
+              Catat & Kelola Arisan
+            </h3>
+            <p
+              class="text-sm text-md-on-surface-variant leading-relaxed font-medium"
+            >
+              Kelola anggota, catat iuran, dan lihat laporan kas secara rapi
+              langsung dari ponsel tanpa takut datanya tertimbun chat.
+            </p>
           </div>
 
-          <!-- Fitur 2 -->
+          <!-- Fitur 2 (Menggunakan Aksen Emas/Tersier) -->
           <div
-            class="bg-md-surface-container-high/40 hover:bg-md-surface-container-high hover:-translate-y-1.5 hover:shadow-lg transition duration-300 rounded-md3-2xl p-8 space-y-5 border border-md-outline-variant/30 flex flex-col justify-between"
+            class="bg-md-surface-container-high/40 hover:bg-md-surface-container-high hover:shadow-md transition-all duration-300 rounded-md3-2xl p-8 space-y-5 border border-md-outline-variant/20 hover:border-md-tertiary/30 group"
           >
-            <div class="space-y-5">
-              <div
-                class="w-12 h-12 rounded-md3-xl bg-md-secondary-container text-md-secondary flex items-center justify-center shadow-inner"
-              >
-                <span class="material-symbols-rounded text-2xl font-semibold">group</span>
-              </div>
-              <h3 class="text-xl font-bold text-md-on-surface">Kocok Pemenang Putaran</h3>
-              <p class="text-sm sm:text-base text-md-on-surface-variant leading-relaxed font-medium">
-                Pengganti lintingan kertas manual, fitur pengundian nama yang memanfaatkan algoritma random number generator (RNG).
-              </p>
+            <div
+              class="w-12 h-12 rounded-md3-xl bg-md-tertiary-container text-md-tertiary flex items-center justify-center transition-transform group-hover:scale-110"
+            >
+              <span class="material-symbols-rounded text-2xl">casino</span>
             </div>
+            <h3 class="text-xl font-bold text-md-on-surface">
+              Kocok Pemenang Putaran
+            </h3>
+            <p
+              class="text-sm text-md-on-surface-variant leading-relaxed font-medium"
+            >
+              Pengganti lintingan kertas manual, fitur pengundian nama yang
+              memanfaatkan algoritma random number generator (RNG).
+            </p>
           </div>
 
           <!-- Fitur 3 -->
           <div
-            class="bg-md-surface-container-high/40 hover:bg-md-surface-container-high hover:-translate-y-1.5 hover:shadow-lg transition duration-300 rounded-md3-2xl p-8 space-y-5 border border-md-outline-variant/30 flex flex-col justify-between"
+            class="bg-md-surface-container-high/40 hover:bg-md-surface-container-high hover:shadow-md transition-all duration-300 rounded-md3-2xl p-8 space-y-5 border border-md-outline-variant/20 hover:border-md-tertiary/30 group"
           >
-            <div class="space-y-5">
-              <div
-                class="w-12 h-12 rounded-md3-xl bg-md-tertiary-container text-md-tertiary flex items-center justify-center shadow-inner"
-              >
-                <span class="material-symbols-rounded text-2xl font-semibold"
-                  >notifications_active</span
-                >
-              </div>
-              <h3 class="text-xl font-bold text-md-on-surface">Akses Tanpa Kuota Internet</h3>
-              <p class="text-sm sm:text-base text-md-on-surface-variant leading-relaxed font-medium">
-                Semua data arisan tersimpan aman di memori perangkat keras Anda sehingga tidak perlu takut akan pengintai.
-              </p>
+            <div
+              class="w-12 h-12 rounded-md3-xl bg-md-secondary-container text-md-secondary flex items-center justify-center transition-transform group-hover:scale-110"
+            >
+              <span class="material-symbols-rounded text-2xl">wifi_off</span>
             </div>
+            <h3 class="text-xl font-bold text-md-on-surface">
+              Akses Tanpa Kuota Internet
+            </h3>
+            <p
+              class="text-sm text-md-on-surface-variant leading-relaxed font-medium"
+            >
+              Semua data arisan tersimpan aman di memori perangkat keras Anda
+              sehingga tidak perlu takut akan pengintai.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Secondary Callout Feature & Flow Section -->
-    <section id="how-it-works" class="py-20 sm:py-28 bg-md-background">
+    <section id="how-it-works" class="py-24 bg-md-background">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          <!-- Kolom Kiri: Visual Layout / Staggered Overlap Mockups -->
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-6 lg:gap-8 relative">
-            <div class="w-full max-w-sm sm:max-w-[280px]">
-              <img 
-                src="assets/group_list.png" 
-                alt="Daftar kelompok arisan" 
-                class="w-full rounded-md3-2xl shadow-lg border border-md-outline-variant/30 object-contain hover:scale-105 hover:shadow-xl transition-all duration-300"
+          <!-- Kolom Kiri: Visual Layout / M3 Elements (Tidak saling menumpuk agar teks dapat dibaca, gerakan tetap dipertahankan) -->
+          <div class="space-y-6 relative w-full max-w-lg mx-auto lg:mx-0">
+            <!-- Background Glow dengan Aksen Tersier -->
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-md-primary/5 via-md-tertiary/15 to-md-tertiary/5 rounded-full filter blur-3xl pointer-events-none"
+            ></div>
+
+            <!-- Gambar 1 -->
+            <div
+              class="relative z-10 transform hover:-translate-y-1.5 hover:rotate-1 hover:shadow-lg transition-all duration-300 rounded-md3-xl overflow-hidden border border-md-outline-variant/35 bg-md-surface-container-low p-2"
+            >
+              <img
+                src="assets/group_list.png"
+                alt="Daftar kelompok arisan"
+                class="w-full h-auto object-contain rounded-md3-lg"
               />
             </div>
-            <div class="w-full max-w-sm sm:max-w-[280px] sm:mt-16">
-              <img 
-                src="assets/riwayat_arisan.png" 
-                alt="Riwayat arisan global" 
-                class="w-full rounded-md3-2xl shadow-lg border border-md-outline-variant/30 object-contain hover:scale-105 hover:shadow-xl transition-all duration-300"
+
+            <!-- Gambar 2 -->
+            <div
+              class="relative z-10 transform hover:-translate-y-1.5 hover:-rotate-1 hover:shadow-lg transition-all duration-300 rounded-md3-xl overflow-hidden border border-md-outline-variant/35 bg-md-surface-container-low p-2"
+            >
+              <img
+                src="assets/riwayat_arisan.png"
+                alt="Riwayat arisan global"
+                class="w-full h-auto object-contain rounded-md3-lg"
               />
             </div>
           </div>
 
           <!-- Kolom Kanan: Konten & Alur Kerja -->
           <div class="space-y-8">
-            <div class="space-y-4 text-center lg:text-left">
+            <div class="space-y-4">
               <span
-                class="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-md-primary bg-md-primary-container/40 px-3.5 py-1.5 rounded-full inline-block"
+                class="text-xs font-extrabold uppercase tracking-widest text-md-on-tertiary-container bg-md-tertiary-container px-4 py-1.5 rounded-md3-full"
                 >Cara Kerja</span
               >
               <h2
-                class="text-3xl sm:text-4xl font-extrabold text-md-on-surface tracking-tight leading-tight"
+                class="text-3xl font-extrabold text-md-on-surface tracking-tight leading-tight"
               >
-                Kelola pencatatan dan undi pemenang dalam satu aplikasi yang sama
+                Kelola pencatatan dan undi pemenang dalam satu aplikasi yang
+                sama
               </h2>
-              <p class="text-base sm:text-lg text-md-on-surface-variant leading-relaxed font-medium">
-                Membuat kelompok arisan, menambahkan anggota, mencatat iuran anggota, hingga mengundi pemenang putaran dengan adil,
-                semua tanpa harus pindah aplikasi.
+              <p
+                class="text-base text-md-on-surface-variant leading-relaxed font-medium"
+              >
+                Membuat kelompok arisan, menambahkan anggota, mencatat iuran
+                anggota, hingga mengundi pemenang putaran dengan adil, semua
+                tanpa harus pindah aplikasi.
               </p>
             </div>
 
-            <ul class="space-y-5">
-              <li class="flex items-start space-x-3.5 group">
+            <!-- Menggunakan Aksen Emas/Tersier pada Ikon Langkah Alur Kerja -->
+            <ul class="grid gap-3">
+              <li
+                class="flex items-start space-x-4 p-3 rounded-md3-lg hover:bg-md-tertiary-container/20 transition-all duration-200"
+              >
                 <div
-                  class="flex-shrink-0 w-6 h-6 rounded-md3-full bg-md-primary-container flex items-center justify-center text-md-primary group-hover:scale-110 transition duration-200 shadow-sm"
+                  class="flex-shrink-0 w-10 h-10 rounded-md3-xl bg-md-tertiary-container text-md-tertiary flex items-center justify-center shadow-sm"
                 >
-                  <span class="material-symbols-rounded text-sm font-bold"
-                    >check</span
+                  <span class="material-symbols-rounded text-xl font-bold"
+                    >groups</span
                   >
                 </div>
                 <p
-                  class="text-sm sm:text-base text-md-on-surface-variant font-semibold leading-normal"
+                  class="text-sm sm:text-base text-md-on-surface-variant font-medium leading-relaxed pt-1"
                 >
-                  Buat kelompok arisan dengan iuran yang ditentukan dan tambahkan anggota melalui kontak.
+                  Buat kelompok arisan dengan iuran yang ditentukan dan
+                  tambahkan anggota melalui kontak.
                 </p>
               </li>
-              <li class="flex items-start space-x-3.5 group">
+              <li
+                class="flex items-start space-x-4 p-3 rounded-md3-lg hover:bg-md-tertiary-container/20 transition-all duration-200"
+              >
                 <div
-                  class="flex-shrink-0 w-6 h-6 rounded-md3-full bg-md-primary-container flex items-center justify-center text-md-primary group-hover:scale-110 transition duration-200 shadow-sm"
+                  class="flex-shrink-0 w-10 h-10 rounded-md3-xl bg-md-tertiary-container text-md-tertiary flex items-center justify-center shadow-sm"
                 >
-                  <span class="material-symbols-rounded text-sm font-bold"
-                    >check</span
+                  <span class="material-symbols-rounded text-xl font-bold"
+                    >chat</span
                   >
                 </div>
                 <p
-                  class="text-sm sm:text-base text-md-on-surface-variant font-semibold leading-normal"
+                  class="text-sm sm:text-base text-md-on-surface-variant font-medium leading-relaxed pt-1"
                 >
-                  Hubungi anggota yang belum bayar dengan fitur template chat yang dapat dikustomisasi.
+                  Hubungi anggota yang belum bayar dengan fitur template chat
+                  yang dapat dikustomisasi.
                 </p>
               </li>
-              <li class="flex items-start space-x-3.5 group">
+              <li
+                class="flex items-start space-x-4 p-3 rounded-md3-lg hover:bg-md-tertiary-container/20 transition-all duration-200"
+              >
                 <div
-                  class="flex-shrink-0 w-6 h-6 rounded-md3-full bg-md-primary-container flex items-center justify-center text-md-primary group-hover:scale-110 transition duration-200 shadow-sm"
+                  class="flex-shrink-0 w-10 h-10 rounded-md3-xl bg-md-tertiary-container text-md-tertiary flex items-center justify-center shadow-sm"
                 >
-                  <span class="material-symbols-rounded text-sm font-bold"
-                    >check</span
+                  <span class="material-symbols-rounded text-xl font-bold"
+                    >price_check</span
                   >
                 </div>
                 <p
-                  class="text-sm sm:text-base text-md-on-surface-variant font-semibold leading-normal"
+                  class="text-sm sm:text-base text-md-on-surface-variant font-medium leading-relaxed pt-1"
                 >
-                  Catat cicilan tagihan atau talangi tagihan anggota agar pengundian pemenang dapat dilakukan tepat waktu.
+                  Catat cicilan tagihan atau talangi tagihan anggota agar
+                  pengundian pemenang dapat dilakukan tepat waktu.
                 </p>
               </li>
-              <li class="flex items-start space-x-3.5 group">
+              <li
+                class="flex items-start space-x-4 p-3 rounded-md3-lg hover:bg-md-tertiary-container/20 transition-all duration-200"
+              >
                 <div
-                  class="flex-shrink-0 w-6 h-6 rounded-md3-full bg-md-primary-container flex items-center justify-center text-md-primary group-hover:scale-110 transition duration-200 shadow-sm"
+                  class="flex-shrink-0 w-10 h-10 rounded-md3-xl bg-md-tertiary-container text-md-tertiary flex items-center justify-center shadow-sm"
                 >
-                  <span class="material-symbols-rounded text-sm font-bold"
-                    >check</span
+                  <span class="material-symbols-rounded text-xl font-bold"
+                    >emoji_events</span
                   >
                 </div>
                 <p
-                  class="text-sm sm:text-base text-md-on-surface-variant font-semibold leading-normal"
+                  class="text-sm sm:text-base text-md-on-surface-variant font-medium leading-relaxed pt-1"
                 >
-                  Undi pemenang putaran dan kabari kelompok atau kabari pemenang secara privat.
+                  Undi pemenang putaran dan kabari kelompok atau kabari pemenang
+                  secara privat.
                 </p>
               </li>
-              <li class="flex items-start space-x-3.5 group">
+              <li
+                class="flex items-start space-x-4 p-3 rounded-md3-lg hover:bg-md-tertiary-container/20 transition-all duration-200"
+              >
                 <div
-                  class="flex-shrink-0 w-6 h-6 rounded-md3-full bg-md-primary-container flex items-center justify-center text-md-primary group-hover:scale-110 transition duration-200 shadow-sm"
+                  class="flex-shrink-0 w-10 h-10 rounded-md3-xl bg-md-tertiary-container text-md-tertiary flex items-center justify-center shadow-sm"
                 >
-                  <span class="material-symbols-rounded text-sm font-bold"
-                    >check</span
+                  <span class="material-symbols-rounded text-xl font-bold"
+                    >picture_as_pdf</span
                   >
                 </div>
                 <p
-                  class="text-sm sm:text-base text-md-on-surface-variant font-semibold leading-normal"
+                  class="text-sm sm:text-base text-md-on-surface-variant font-medium leading-relaxed pt-1"
                 >
-                  Lihat riwayat putaran arisan yang dapat dibagikan kepada kelompok sebagai file PDF.
+                  Lihat riwayat putaran arisan yang dapat dibagikan kepada
+                  kelompok sebagai file PDF.
                 </p>
               </li>
-              <li class="flex items-start space-x-3.5 group">
+              <li
+                class="flex items-start space-x-4 p-3 rounded-md3-lg hover:bg-md-tertiary-container/20 transition-all duration-200"
+              >
                 <div
-                  class="flex-shrink-0 w-6 h-6 rounded-md3-full bg-md-primary-container flex items-center justify-center text-md-primary group-hover:scale-110 transition duration-200 shadow-sm"
+                  class="flex-shrink-0 w-10 h-10 rounded-md3-xl bg-md-tertiary-container text-md-tertiary flex items-center justify-center shadow-sm"
                 >
-                  <span class="material-symbols-rounded text-sm font-bold"
-                    >check</span
+                  <span class="material-symbols-rounded text-xl font-bold"
+                    >archive</span
                   >
                 </div>
                 <p
-                  class="text-sm sm:text-base text-md-on-surface-variant font-semibold leading-normal"
+                  class="text-sm sm:text-base text-md-on-surface-variant font-medium leading-relaxed pt-1"
                 >
-                  Arsipkan kelompok arisan yang seluruh anggotanya sudah menerima tarikan.
+                  Arsipkan kelompok arisan yang seluruh anggotanya sudah
+                  menerima tarikan.
                 </p>
               </li>
             </ul>
@@ -459,29 +500,29 @@
       </div>
     </section>
 
-    <!-- Bottom CTA / App Download Section (M3 Accent Style) -->
+    <!-- Bottom CTA / App Download Section (M3 Accent Style - Menggunakan Latar Belakang Tersier/Emas Hangat) -->
     <section
       id="about"
-      class="py-20 sm:py-28 bg-md-primary-container text-md-on-primary-container relative overflow-hidden"
+      class="py-24 bg-md-tertiary-container text-md-on-tertiary-container relative overflow-hidden border-t border-md-outline-variant/15"
     >
       <!-- Radial dynamic M3 backgrounds -->
       <div
-        class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-md-primary/10 rounded-md3-full filter blur-[100px] pointer-events-none"
+        class="absolute top-0 left-1/4 w-96 h-96 bg-md-primary/10 rounded-md3-full filter blur-3xl pointer-events-none"
       ></div>
       <div
-        class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-md-tertiary/10 rounded-md3-full filter blur-[100px] pointer-events-none"
+        class="absolute bottom-0 right-1/4 w-96 h-96 bg-md-tertiary/10 rounded-md3-full filter blur-3xl pointer-events-none"
       ></div>
 
       <div
         class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10 space-y-6"
       >
         <h2
-          class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-md-on-primary-container"
+          class="text-3xl sm:text-4xl font-extrabold tracking-tight text-md-on-tertiary-container"
         >
           Mulai berarisan dengan Arisanak
         </h2>
         <p
-          class="text-base sm:text-lg lg:text-xl text-md-on-primary-container/85 max-w-xl mx-auto leading-relaxed font-semibold"
+          class="text-base sm:text-lg text-md-on-tertiary-container/80 max-w-xl mx-auto leading-relaxed font-semibold"
         >
           Kelola arisan Anda sekarang juga tanpa ribet.
         </p>
@@ -495,7 +536,7 @@
               href="https://drive.google.com/drive/folders/1zz1i8U3wAz4avA3QSz99XQW4QNnvjsdx?usp=drive_link"
               target="_blank"
               rel="noopener noreferrer"
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4.5 text-base font-bold text-md-on-primary bg-md-primary hover:bg-md-primary/95 active:scale-[0.98] transition-all duration-200 rounded-md3-full shadow-lg hover:shadow-xl hover:shadow-md-primary/20"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold text-md-on-primary bg-md-primary hover:bg-md-primary/95 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 rounded-md3-full"
             >
               <span class="material-symbols-rounded">download_for_offline</span>
               Dapatkan Arisanak Sekarang
@@ -506,7 +547,7 @@
               href="https://drive.google.com/drive/folders/1zz1i8U3wAz4avA3QSz99XQW4QNnvjsdx?usp=drive_link"
               target="_blank"
               rel="noopener noreferrer"
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4.5 text-base font-bold text-md-on-primary-container bg-md-primary-container hover:bg-md-primary-container/85 active:scale-[0.98] transition-all duration-200 rounded-md3-full hover:shadow-md"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold text-md-on-tertiary-container bg-md-background/50 hover:bg-md-background/80 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 rounded-md3-full border border-md-outline/10"
             >
               <span class="material-symbols-rounded">menu_book</span>
               Buku Manual Digital
@@ -522,27 +563,28 @@
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-md-outline-variant/20"
+          class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-md-outline-variant/30"
         >
           <!-- Kolom 1: Profil Brand / PT -->
           <div class="md:col-span-5 space-y-4">
-            <div class="flex items-center space-x-2.5">
+            <div class="flex items-center space-x-2">
               <img
                 src="assets/arisanak-foreground.png"
                 alt="Logo Arisanak"
-                class="h-8.5 w-auto object-contain"
+                class="h-9 w-auto object-contain"
               />
-              <span class="text-xl font-extrabold tracking-tight text-md-on-surface"
+              <span
+                class="text-xl font-extrabold tracking-tight text-md-on-surface"
                 >Arisanak</span
               >
             </div>
             <p
-              class="text-sm sm:text-base text-md-on-surface-variant max-w-sm leading-relaxed font-semibold"
+              class="text-sm text-md-on-surface-variant max-w-sm leading-relaxed font-medium"
             >
               Aplikasi pengelolaan arisan sosial modern dalam genggaman Anda.
             </p>
             <p
-              class="text-xs sm:text-sm font-extrabold text-md-primary tracking-wider uppercase pt-1"
+              class="text-xs font-extrabold text-md-on-tertiary-container tracking-wider uppercase bg-md-tertiary-container px-3 py-1 rounded-md3-xs inline-block"
             >
               PT Dua Naufal Sekelompok
             </p>
@@ -551,15 +593,17 @@
           <!-- Kolom 2: Kontak & Kantor Resmi -->
           <div class="md:col-span-4 space-y-4">
             <h4
-              class="text-xs sm:text-sm font-extrabold text-md-on-surface tracking-wider uppercase"
+              class="text-xs font-extrabold text-md-on-surface tracking-wider uppercase"
             >
               Hubungi Kami
             </h4>
-            <ul class="space-y-4 text-sm sm:text-base text-md-on-surface-variant font-medium">
+            <ul
+              class="space-y-4 text-sm text-md-on-surface-variant font-medium font-medium"
+            >
               <!-- Alamat -->
-              <li class="flex items-start space-x-3 group">
+              <li class="flex items-start space-x-3">
                 <span
-                  class="material-symbols-rounded text-md-primary text-xl flex-shrink-0 mt-0.5"
+                  class="material-symbols-rounded text-md-tertiary text-xl flex-shrink-0 mt-0.5"
                   >location_on</span
                 >
                 <span class="leading-relaxed">
@@ -571,14 +615,14 @@
               <!-- Telepon -->
               <li class="flex items-center space-x-3">
                 <span
-                  class="material-symbols-rounded text-md-primary text-xl flex-shrink-0"
+                  class="material-symbols-rounded text-md-tertiary text-xl flex-shrink-0"
                   >call</span
                 >
                 <a
                   href="tel:+6282148782638"
-                  class="hover:text-md-primary transition duration-150 font-bold text-md-on-surface underline decoration-transparent hover:decoration-md-primary"
+                  class="hover:text-md-tertiary hover:underline transition font-bold"
                 >
-                  +62 821-4878-2638
+                  05113304405
                 </a>
               </li>
             </ul>
@@ -587,19 +631,20 @@
           <!-- Kolom 3: Navigasi Cepat -->
           <div class="md:col-span-3 space-y-4">
             <h4
-              class="text-xs sm:text-sm font-extrabold text-md-on-surface tracking-wider uppercase"
+              class="text-xs font-extrabold text-md-on-surface tracking-wider uppercase"
             >
               Navigasi Cepat
             </h4>
             <ul
-              class="space-y-3.5 text-sm sm:text-base text-md-on-surface-variant font-semibold"
+              class="space-y-3.5 text-sm text-md-on-surface-variant font-semibold"
             >
               <li>
                 <a
                   href="#features"
-                  class="hover:text-md-primary transition duration-150 flex items-center space-x-2 group"
+                  class="hover:text-md-tertiary transition-colors duration-200 flex items-center space-x-1.5"
                 >
-                  <span class="material-symbols-rounded text-sm text-md-outline transition-transform group-hover:translate-x-1"
+                  <span
+                    class="material-symbols-rounded text-lg text-md-tertiary"
                     >chevron_right</span
                   >
                   <span>Fitur Unggulan</span>
@@ -608,9 +653,10 @@
               <li>
                 <a
                   href="#how-it-works"
-                  class="hover:text-md-primary transition duration-150 flex items-center space-x-2 group"
+                  class="hover:text-md-tertiary transition-colors duration-200 flex items-center space-x-1.5"
                 >
-                  <span class="material-symbols-rounded text-sm text-md-outline transition-transform group-hover:translate-x-1"
+                  <span
+                    class="material-symbols-rounded text-lg text-md-tertiary"
                     >chevron_right</span
                   >
                   <span>Cara Kerja</span>
@@ -622,13 +668,14 @@
 
         <!-- Baris Hak Cipta -->
         <div
-          class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-md-on-surface-variant font-medium"
+          class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-md-on-surface-variant font-semibold"
         >
-          <p class="text-center sm:text-left">
-            &copy; 2026 <strong>PT Dua Naufal Sekelompok</strong>. Hak cipta dilindungi undang-undang.
+          <p class="text-center sm:text-left leading-relaxed">
+            &copy; 2026 <strong>PT Dua Naufal Sekelompok</strong>. Hak cipta
+            dilindungi undang-undang.
           </p>
           <div class="flex space-x-4">
-            <span class="opacity-60 font-semibold">Arisanak</span>
+            <span class="opacity-60">Arisanak</span>
           </div>
         </div>
       </div>
